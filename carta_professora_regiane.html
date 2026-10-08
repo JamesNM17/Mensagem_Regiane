@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff4e9">
+  <title>Uma carta de gratidão para Regiane ♥</title>
+  <style>
+    :root {
+      --paper: #fffdf8;
+      --ink: #54352f;
+      --muted: #76534c;
+      --pink: #f7c8d1;
+      --rose: #e994a7;
+      --lilac: #dcd2f5;
+      --yellow: #f7df91;
+      --green: #c8dfbd;
+      --shadow: rgba(92, 57, 48, .15);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 34px 16px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 12%, rgba(247, 200, 209, .75) 0 7%, transparent 7.5%),
+        radial-gradient(circle at 91% 85%, rgba(220, 210, 245, .8) 0 8%, transparent 8.5%),
+        linear-gradient(135deg, #fbe7df, #fff6ed 48%, #f3eafb);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+
+    .page-wrap { width: min(100%, 790px); }
+
+    .top-note {
+      text-align: center;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #9b6c70;
+      margin: 0 0 14px;
+    }
+
+    .letter {
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      border: 2px solid rgba(233, 148, 167, .5);
+      border-radius: 24px;
+      padding: clamp(25px, 6vw, 58px);
+      box-shadow: 0 22px 60px var(--shadow);
+      isolation: isolate;
+    }
+
+    .letter::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 2px dashed #eac6cb;
+      border-radius: 16px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .letter::after {
+      content: "✿   ♥   ✿";
+      position: absolute;
+      right: 28px;
+      top: 20px;
+      color: #dfa0ac;
+      font-size: 1rem;
+      letter-spacing: .25em;
+      transform: rotate(9deg);
+      opacity: .8;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      text-align: center;
+      color: #a46d71;
+      font-weight: 800;
+      font-size: .78rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.25rem, 7vw, 4.4rem);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+      color: #633d37;
+    }
+
+    h1 span {
+      color: #c96f85;
+      font-style: italic;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin: 15px auto 27px;
+      max-width: 460px;
+      line-height: 1.65;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0;
+      color: #d08b9a;
+      justify-content: center;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      width: min(25%, 110px);
+      height: 1px;
+      background: #edcbd0;
+    }
+
+    .greeting {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.18rem, 3vw, 1.45rem);
+      margin: 0 0 14px;
+      color: #9a5965;
+      font-weight: bold;
+    }
+
+    .body-copy {
+      color: #654943;
+      font-size: clamp(.99rem, 2vw, 1.08rem);
+      line-height: 1.9;
+      margin: 0 0 16px;
+    }
+
+    .highlight {
+      display: inline;
+      padding: 0 .15em;
+      background: linear-gradient(transparent 58%, #f8e4a8 58%);
+    }
+
+    .poem {
+      position: relative;
+      margin: 30px auto;
+      max-width: 540px;
+      padding: 25px 20px 24px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff0f1, #f7f1ff);
+      border-radius: 18px;
+      border: 1px solid #f0d8dc;
+    }
+
+    .poem h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem;
+      margin: 0 0 14px;
+      color: #985c69;
+      font-weight: normal;
+      font-style: italic;
+    }
+
+    .poem p {
+      margin: 0;
+      line-height: 1.85;
+      color: #694a50;
+      font-size: 1rem;
+    }
+
+    .nursing-note {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 26px 0;
+      padding: 16px 18px;
+      background: #f0f6ec;
+      border-radius: 15px;
+      color: #52694c;
+      line-height: 1.65;
+    }
+    .nursing-note .icon { font-size: 1.8rem; flex-shrink: 0; }
+    .nursing-note p { margin: 0; }
+
+    .closing {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .closing p {
+      margin: 0 0 7px;
+      line-height: 1.8;
+      color: #654943;
+    }
+    .signature {
+      margin-top: 15px !important;
+      color: #b8667a !important;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.5rem;
+      font-style: italic;
+    }
+
+    .heart-row {
+      text-align: center;
+      margin-top: 22px;
+      color: #d98295;
+      letter-spacing: .45em;
+      font-size: 1.15rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 0;
+    }
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: #c96f85;
+      color: white;
+      font: 700 .92rem "Trebuchet MS", "Segoe UI", sans-serif;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgba(201, 111, 133, .23);
+      transition: transform .2s ease, background .2s ease;
+    }
+    button:hover { transform: translateY(-2px); background: #b95e75; }
+    button.secondary { background: #75638d; box-shadow: 0 5px 14px rgba(117, 99, 141, .2); }
+    button.secondary:hover { background: #635176; }
+    .tiny-note { text-align: center; color: #9a7772; font-size: .78rem; margin: 13px 0 0; }
+
+    .floating { position: fixed; pointer-events: none; opacity: .5; font-size: 1.4rem; animation: float 5s ease-in-out infinite; }
+    .f1 { top: 9%; left: 5%; color: #d98fa0; }
+    .f2 { bottom: 9%; right: 6%; color: #a797d7; animation-delay: -2s; }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-7deg); } 50% { transform: translateY(-12px) rotate(8deg); } }
+
+    @media (max-width: 480px) {
+      body { padding: 18px 10px; }
+      .letter { border-radius: 18px; }
+      .letter::before { inset: 7px; }
+      .letter::after { right: 18px; top: 15px; font-size: .8rem; }
+      .nursing-note { align-items: flex-start; }
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .page-wrap { width: 100%; }
+      .top-note, .actions, .tiny-note, .floating { display: none !important; }
+      .letter { box-shadow: none; border-radius: 0; border: 1px solid #eac6cb; }
+      @page { margin: 12mm; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <span class="floating f1" aria-hidden="true">✿</span>
+  <span class="floating f2" aria-hidden="true">♡</span>
+
+  <main class="page-wrap">
+    <p class="top-note">Uma homenagem feita com carinho</p>
+    <article class="letter" aria-labelledby="title">
+      <p class="eyebrow">De alguém que agradece por ter conhecido a senhora</p>
+      <h1 id="title">Professora <span>Regiane</span></h1>
+      <p class="subtitle">Nem toda história começa da melhor forma. Algumas se tornam especiais quando temos a oportunidade de conhecer quem a pessoa realmente é.</p>
+
+      <div class="divider" aria-hidden="true">♥</div>
+
+      <p class="greeting">Querida Regiane,</p>
+      <p class="body-copy">
+        Quero começar esta mensagem com sinceridade. Nossa primeira interação não foi das melhores: entrei na sua sala sem pedir licença e, naquele momento, não percebi o quanto minha atitude foi grosseira. Só depois, quando o professor William veio conversar comigo, entendi melhor o que tinha feito. Guardei essa lição comigo. Hoje reconheço que deveria ter pedido licença e peço desculpas por ter sido grosseiro naquela ocasião. Faço questão de reconhecer isso aqui, com humildade e respeito.
+      </p>
+      <p class="body-copy">
+        Mas fico feliz que aquela primeira impressão não tenha sido tudo. Mesmo sendo da área de <span class="highlight">Desenvolvimento de Sistemas</span> e não sendo seu aluno, hoje me sinto profundamente agradecido por ter tido a oportunidade de conhecer a senhora. Com o tempo, passei a admirar não apenas a excelente profissional de enfermagem que é, mas também a pessoa maravilhosa, humana e especial que existe em você.
+      </p>
+      <p class="body-copy">
+        Obrigado por todo o carinho, por todo o amor e cuidado, pela ajuda, pelos momentos compartilhados e por cada gesto que fez diferença para mim. Talvez nem sempre eu encontre as palavras certas para explicar o quanto isso significa, mas quero que saiba que guardo essa gratidão de verdade. Conhecer a senhora se tornou uma daquelas surpresas bonitas que a vida nos oferece.
+      </p>
+      <p class="body-copy">
+        Preparei esta mensagem e este pequeno presente porque queria encontrar uma forma de retribuir, mesmo que modestamente, um pouco da alegria e do bem que a senhora me transmite. Não espero que um presente consiga expressar tudo o que sinto; só espero que ele carregue, de alguma maneira, a sinceridade com que foi feito.
+      </p>
+      <section class="poem" aria-labelledby="poem-title">
+        <h2 id="poem-title">Um pequeno poema para a senhora</h2>
+        <p>
+          Nem todo começo sabe florescer,<br>
+          nem todo primeiro olhar consegue ver.<br>
+          Mas o tempo revela, em cada gesto,<br>
+          a beleza de um coração honesto.<br><br>
+          Seu carinho acolhe, sua presença ilumina,<br>
+          e torna mais leve a vida de quem se aproxima.<br>
+          Que o mundo lhe devolva, em dobro e com amor,<br>
+          toda a bondade que espalha por onde for.
+        </p>
+      </section>
+
+      <aside class="nursing-note">
+        <span class="icon" aria-hidden="true">🩺</span>
+        <p><strong>Regiane, espero, de coração, que a senhora entenda a importância que tem no mundo.</strong> Talvez não consiga medir o alcance dos seus gestos, mas pessoas como a senhora tornam os dias mais humanos, acolhem e deixam marcas boas que continuam muito depois de um encontro. Seu valor vai além da profissão: está também na pessoa que a senhora escolhe ser.</p>
+      </aside>
+
+      <p class="body-copy">
+        Sou grato pela ajuda, pelo carinho e por todos esses momentos que, para mim, têm valor. A senhora me lembra que as conexões mais importantes nem sempre vêm de onde esperamos — e que conhecer alguém de verdade pode mudar completamente a impressão que tínhamos no início.
+      </p>
+      <p class="body-copy">
+        Espero que esta mensagem e este presente consigam alegrar seu coração, nem que seja minimamente. Foi tudo pensado com carinho, como uma forma simples e sincera de dizer que fico feliz por ter conhecido a senhora. Que a vida lhe devolva em paz, amor e alegria todo o cuidado bonito que existe em você.
+      </p>
+
+      <div class="closing">
+        <p>Com admiração, respeito, carinho e gratidão,</p>
+        <p class="signature">Obrigado por me permitir conhecer a pessoa incrível que a senhora é. ♥</p>
+        <p>Que este pequeno presente deixe em seu coração ao menos um pouquinho da alegria que conhecer você trouxe ao meu.</p>
+      </div>
+      <div class="heart-row" aria-hidden="true">✿ ♥ ✿ ♥ ✿</div>
+    </article>
+
+    <div class="actions" aria-label="Ações da carta">
+      <button type="button" onclick="window.print()">♡ Imprimir ou salvar em PDF</button>
+      <button type="button" class="secondary" id="copyButton">Copiar mensagem</button>
+    </div>
+    <p class="tiny-note" id="feedback" aria-live="polite">Uma página feita para ser lida com calma e entregue com carinho.</p>
+  </main>
+
+  <script>
+    const copyButton = document.getElementById('copyButton');
+    const feedback = document.getElementById('feedback');
+
+    copyButton.addEventListener('click', async () => {
+      const letter = document.querySelector('.letter').innerText.trim();
+      try {
+        await navigator.clipboard.writeText(letter);
+        feedback.textContent = 'Mensagem copiada!';
+      } catch (error) {
+        const textArea = document.createElement('textarea');
+        textArea.value = letter;
+        textArea.setAttribute('readonly', '');
+        textArea.style.position = 'absolute';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        const copied = document.execCommand('copy');
+        textArea.remove();
+        feedback.textContent = copied
+          ? 'Mensagem copiada!'
+          : 'A cópia automática não funcionou neste navegador. Selecione o texto da carta para copiá-lo.';
+      }
+    });
+  </script>
+</body>
+</html>
