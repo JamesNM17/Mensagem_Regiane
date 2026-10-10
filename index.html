@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6f1728">
+<meta name="description" content="Uma carta de gratidão à professora Regiane.">
+<title>Uma carta de gratidão para Regiane ♥</title>
+
+<style>
+:root {
+  --paper: #fffdf7;
+  --ink: #432625;
+  --muted: #775752;
+  --wine: #6f1728;
+  --wine-dark: #45101c;
+  --red: #a72e3e;
+  --gold: #c5a66b;
+  --sage: #e7eee3;
+  --sage-ink: #52674c;
+  --shadow: rgba(67, 26, 31, .18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 34px 16px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 7% 10%,
+      rgba(111, 23, 40, .11) 0 7%, transparent 7.5%),
+    radial-gradient(circle at 93% 84%,
+      rgba(197, 166, 107, .19) 0 9%, transparent 9.5%),
+    linear-gradient(135deg, #f0e3d4, #fff9ef 48%, #eee4dc);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+/* EFEITO DE CURA DOS JOGOS */
+
+.healing-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.healing-overlay::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  background:
+    radial-gradient(ellipse at 20% 30%,
+      rgba(173, 255, 140, .17), transparent 43%),
+    radial-gradient(ellipse at 80% 65%,
+      rgba(255, 232, 145, .15), transparent 45%);
+  animation: healingAura 9s ease-in-out infinite alternate;
+}
+
+.healing-overlay::after {
+  content: "";
+  position: absolute;
+  width: min(70vw, 600px);
+  aspect-ratio: 1;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(181, 236, 155, .16);
+  border-radius: 50%;
+  box-shadow:
+    0 0 40px rgba(159, 255, 127, .09),
+    inset 0 0 35px rgba(255, 246, 202, .08);
+  transform: translate(-50%, -50%);
+  animation: healingHalo 7s ease-in-out infinite;
+}
+
+.healing-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(20vw, 180px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(166, 238, 139, .3);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(164, 255, 132, .13);
+  opacity: 0;
+  animation: healingRing 9s ease-out infinite;
+}
+
+.healing-ring:nth-child(2) {
+  animation-delay: -3s;
+}
+
+.healing-ring:nth-child(3) {
+  animation-delay: -6s;
+}
+
+.healing-particle {
+  position: absolute;
+  left: var(--particle-x);
+  bottom: -70px;
+  color: var(--particle-color);
+  font-family: Arial, sans-serif;
+  font-size: var(--particle-size);
+  font-weight: 900;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  user-select: none;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, .95),
+    0 0 9px currentColor,
+    0 0 18px rgba(139, 255, 116, .85),
+    0 0 32px rgba(139, 255, 116, .4);
+  animation:
+    healingRise var(--particle-duration) linear
+    var(--particle-delay) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes healingRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0)
+      rotate(-8deg) scale(.55);
+  }
+
+  12% {
+    opacity: .9;
+  }
+
+  25% {
+    opacity: 1;
+    transform: translate3d(15px, -25vh, 0)
+      rotate(7deg) scale(1.12);
+  }
+
+  50% {
+    opacity: .8;
+    transform: translate3d(-14px, -55vh, 0)
+      rotate(-6deg) scale(1);
+  }
+
+  78% {
+    opacity: .5;
+    transform: translate3d(12px, -85vh, 0)
+      rotate(8deg) scale(.9);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--particle-drift), -115vh, 0)
+      rotate(-10deg) scale(.65);
+  }
+}
+
+@keyframes healingAura {
+  from {
+    transform: scale(.95);
+    opacity: .45;
+  }
+
+  to {
+    transform: scale(1.08);
+    opacity: .85;
+  }
+}
+
+@keyframes healingHalo {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(.9);
+    opacity: .35;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: .85;
+  }
+}
+
+@keyframes healingRing {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.35);
+  }
+
+  15% {
+    opacity: .3;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(4.5);
+  }
+}
+
+/* CARTA */
+
+.page-wrap {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 790px);
+}
+
+.top-note {
+  text-align: center;
+  font-size: .76rem;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--wine);
+  margin: 0 0 14px;
+  font-weight: 800;
+}
+
+.letter {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+  border: 2px solid rgba(111, 23, 40, .36);
+  border-radius: 24px;
+  padding: clamp(25px, 6vw, 58px);
+  box-shadow: 0 22px 60px var(--shadow);
+  isolation: isolate;
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1.5px dashed #cdb0a5;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.letter::after {
+  content: "✚ ♥ ✚";
+  position: absolute;
+  right: 27px;
+  top: 20px;
+  color: var(--wine);
+  font-size: .94rem;
+  letter-spacing: .2em;
+  transform: rotate(7deg);
+  opacity: .72;
+}
+
+.eyebrow {
+  margin: 0 0 9px;
+  text-align: center;
+  color: var(--wine);
+  font-weight: 800;
+  font-size: .74rem;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.25rem, 7vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -.045em;
+  color: var(--wine-dark);
+}
+
+h1 span {
+  color: var(--red);
+  font-style: italic;
+}
+
+.subtitle {
+  text-align: center;
+  margin: 15px auto 23px;
+  max-width: 480px;
+  line-height: 1.7;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.medical-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 21px auto 25px;
+  color: var(--wine);
+}
+
+.medical-divider::before,
+.medical-divider::after {
+  content: "";
+  width: min(24%, 118px);
+  height: 1px;
+  background: #d9bdb4;
+}
+
+.medical-divider svg {
+  width: 135px;
+  max-width: 28%;
+  height: 25px;
+}
+
+.medical-divider path {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.greeting {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.18rem, 3vw, 1.45rem);
+  margin: 0 0 14px;
+  color: var(--wine);
+  font-weight: bold;
+}
+
+.body-copy {
+  color: #60423e;
+  font-size: clamp(.99rem, 2vw, 1.08rem);
+  line-height: 1.9;
+  margin: 0 0 16px;
+}
+
+.highlight {
+  padding: 0 .15em;
+  background: linear-gradient(transparent 58%, #ead8aa 58%);
+  color: #52202a;
+}
+
+.poem {
+  position: relative;
+  margin: 30px auto;
+  max-width: 540px;
+  padding: 26px 20px 25px;
+  text-align: center;
+  background: linear-gradient(135deg, #fbf1e5, #f0e7e2);
+  border-radius: 18px;
+  border: 1px solid #d9bdb4;
+  box-shadow: inset 0 0 0 5px rgba(255, 253, 247, .6);
+}
+
+.poem::before {
+  content: "✚";
+  display: block;
+  margin: 0 auto 7px;
+  color: var(--red);
+  font-size: 1.05rem;
+}
+
+.poem h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4rem;
+  margin: 0 0 14px;
+  color: var(--wine);
+  font-weight: normal;
+  font-style: italic;
+}
+
+.poem p {
+  margin: 0;
+  line-height: 1.85;
+  color: #694744;
+  font-size: 1rem;
+}
+
+.nursing-note {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 26px 0;
+  padding: 17px 18px;
+  background: var(--sage);
+  border-left: 4px solid var(--wine);
+  border-radius: 4px 15px 15px 4px;
+  color: var(--sage-ink);
+  line-height: 1.7;
+}
+
+.nursing-note .icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 50%;
+  background: rgba(255, 253, 247, .8);
+  color: var(--wine);
+  font-size: 1.65rem;
+}
+
+.nursing-note p {
+  margin: 0;
+}
+
+.nursing-note strong {
+  color: #40553a;
+}
+
+.closing {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.closing p {
+  margin: 0 0 7px;
+  line-height: 1.8;
+  color: #60423e;
+}
+
+.signature {
+  margin-top: 15px !important;
+  color: var(--wine) !important;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.42rem;
+  font-style: italic;
+}
+
+.heart-row {
+  text-align: center;
+  margin-top: 22px;
+  color: var(--red);
+  letter-spacing: .4em;
+  font-size: 1.05rem;
+}
+
+/* CONTROLES */
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 0;
+}
+
+.healing-controls {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid rgba(89, 119, 77, .23);
+  border-radius: 999px;
+  color: #496747;
+  background: rgba(248, 250, 238, .95);
+  box-shadow: 0 4px 18px rgba(105, 139, 91, .13);
+}
+
+.healing-control {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid rgba(89, 119, 77, .28);
+  border-radius: 50%;
+  color: #3f673b;
+  background: #f6f9ed;
+  font: 800 1.45rem/1 "Trebuchet MS", sans-serif;
+  cursor: pointer;
+}
+
+.healing-control:hover:not(:disabled) {
+  background: #e5f1d9;
+  box-shadow: 0 0 14px rgba(139, 198, 111, .3);
+}
+
+.healing-control:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.healing-control:focus-visible {
+  outline: 3px solid #b7d89d;
+  outline-offset: 3px;
+}
+
+.healing-count {
+  min-width: 132px;
+  text-align: center;
+  color: #496747;
+  font-size: .86rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 18px 10px;
+  }
+
+  .letter {
+    border-radius: 18px;
+  }
+
+  .letter::before {
+    inset: 7px;
+  }
+
+  .letter::after {
+    right: 18px;
+    top: 15px;
+    font-size: .72rem;
+  }
+
+  .nursing-note {
+    align-items: flex-start;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .nursing-note .icon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    font-size: 1.4rem;
+  }
+
+  .healing-controls {
+    gap: 8px;
+    padding: 6px 8px;
+  }
+
+  .healing-control {
+    width: 35px;
+    height: 35px;
+  }
+
+  .healing-count {
+    min-width: 116px;
+    font-size: .8rem;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+    display: block;
+  }
+
+  .page-wrap {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .top-note,
+  .actions,
+  .healing-overlay {
+    display: none !important;
+  }
+
+  .letter {
+    box-shadow: none;
+    border-radius: 0;
+    border: 1px solid #cdb0a5;
+    padding: 12mm;
+  }
+
+  .poem,
+  .nursing-note {
+    break-inside: avoid;
+  }
+
+  @page {
+    margin: 12mm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+
+  .healing-particle,
+  .healing-ring {
+    display: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CAMADA DO EFEITO DE CURA -->
+<div class="healing-overlay" id="healingOverlay" aria-hidden="true">
+  <span class="healing-ring"></span>
+  <span class="healing-ring"></span>
+  <span class="healing-ring"></span>
+</div>
+
+<main class="page-wrap">
+
+  <p class="top-note">✚ Uma homenagem feita com carinho ✚</p>
+
+  <article class="letter" aria-labelledby="title">
+
+    <p class="eyebrow">
+      De alguém que agradece por ter conhecido a senhora
+    </p>
+
+    <h1 id="title">Professora <span>Regiane</span></h1>
+
+    <p class="subtitle">
+      Nem toda história começa da melhor forma. Algumas se tornam
+      especiais quando temos a oportunidade de conhecer quem a
+      pessoa realmente é.
+    </p>
+
+    <div class="medical-divider" aria-hidden="true">
+      <svg viewBox="0 0 140 26">
+        <path d="M2 13 H39 L48 13 L57 4 L67 22 L77 8 L86 13 H138"/>
+      </svg>
+    </div>
+
+    <p class="greeting">Querida Regiane,</p>
+
+    <p class="body-copy">
+      Quero começar esta mensagem com sinceridade. Nossa primeira
+      interação não foi das melhores: entrei na sua sala sem pedir
+      licença e, naquele momento, não percebi o quanto minha atitude
+      foi grosseira. Só depois, quando o professor William veio
+      conversar comigo, entendi melhor o que tinha feito. Guardei
+      essa lição comigo. Hoje reconheço que deveria ter pedido
+      licença e peço desculpas por ter sido grosseiro naquela
+      ocasião. Faço questão de reconhecer isso aqui, com humildade
+      e respeito.
+    </p>
+
+    <p class="body-copy">
+      Mas fico feliz que aquela primeira impressão não tenha sido
+      tudo. Mesmo sendo da área de
+      <span class="highlight">Desenvolvimento de Sistemas</span>
+      e não sendo seu aluno, hoje me sinto profundamente agradecido
+      por ter tido a oportunidade de conhecer a senhora. Com o
+      tempo, passei a admirar não apenas a excelente profissional
+      de enfermagem que é, mas também a pessoa maravilhosa, humana
+      e especial que existe em você.
+    </p>
+
+    <p class="body-copy">
+      Obrigado por todo o carinho, por todo o amor e cuidado, pela
+      ajuda, pelos momentos compartilhados e por cada gesto que fez
+      diferença para mim. Talvez nem sempre eu encontre as palavras
+      certas para explicar o quanto isso significa, mas quero que
+      saiba que guardo essa gratidão de verdade. Conhecer a senhora
+      se tornou uma daquelas surpresas bonitas que a vida nos oferece.
+    </p>
+
+    <p class="body-copy">
+      Preparei esta mensagem e este pequeno presente porque queria
+      encontrar uma forma de retribuir, mesmo que modestamente, um
+      pouco da alegria e do bem que a senhora me transmite. Não
+      espero que um presente consiga expressar tudo o que sinto;
+      só espero que ele carregue, de alguma maneira, a sinceridade
+      com que foi feito.
+    </p>
+
+    <section class="poem" aria-labelledby="poem-title">
+      <h2 id="poem-title">Um pequeno poema para a senhora</h2>
+      <p>
+        Nem todo começo sabe florescer,<br>
+        nem todo primeiro olhar consegue ver.<br>
+        Mas o tempo revela, em cada gesto,<br>
+        a beleza de um coração honesto.<br><br>
+
+        Seu carinho acolhe, sua presença ilumina,<br>
+        e torna mais leve a vida de quem se aproxima.<br>
+        Que o mundo lhe devolva, em dobro e com amor,<br>
+        toda a bondade que espalha por onde for.
+      </p>
+    </section>
+
+    <aside class="nursing-note">
+      <span class="icon" aria-hidden="true">🩺</span>
+      <p>
+        <strong>
+          Regiane, espero, de coração, que a senhora entenda a
+          importância que tem no mundo.
+        </strong>
+        Talvez não consiga medir o alcance dos seus gestos, mas
+        pessoas como a senhora tornam os dias mais humanos, acolhem
+        e deixam marcas boas que continuam muito depois de um
+        encontro. Seu valor vai além da profissão: está também na
+        pessoa que a senhora escolhe ser.
+      </p>
+    </aside>
+
+    <p class="body-copy">
+      Sou grato pela ajuda, pelo carinho e por todos esses momentos
+      que, para mim, têm valor. A senhora me lembra que as conexões
+      mais importantes nem sempre vêm de onde esperamos — e que
+      conhecer alguém de verdade pode mudar completamente a impressão
+      que tínhamos no início.
+    </p>
+
+    <p class="body-copy">
+      Espero que esta mensagem e este presente consigam alegrar seu
+      coração, nem que seja minimamente. Foi tudo pensado com carinho,
+      como uma forma simples e sincera de dizer que fico feliz por
+      ter conhecido a senhora. Que a vida lhe devolva em paz, amor
+      e alegria todo o cuidado bonito que existe em você.
+    </p>
+
+    <div class="closing">
+      <p>Com admiração, respeito, carinho e gratidão,</p>
+
+      <p class="signature">
+        Obrigado por me permitir conhecer a pessoa incrível que a
+        senhora é. ♥
+      </p>
+
+      <p>
+        Que este pequeno presente deixe em seu coração ao menos um
+        pouquinho da alegria que conhecer você trouxe ao meu.
+      </p>
+    </div>
+
+    <div class="heart-row" aria-hidden="true">
+      ✚ ♥ ✚ ♥ ✚
+    </div>
+
+  </article>
+
+  <div class="actions" aria-label="Controles do efeito de cura">
+    <div class="healing-controls">
+      <button
+        type="button"
+        class="healing-control"
+        id="decreaseHealing"
+        aria-label="Diminuir sinais de cura"
+        title="Diminuir sinais de cura"
+      >−</button>
+
+      <span
+        class="healing-count"
+        id="healingCount"
+        role="status"
+        aria-live="polite"
+      >30 sinais de cura +</span>
+
+      <button
+        type="button"
+        class="healing-control"
+        id="increaseHealing"
+        aria-label="Aumentar sinais de cura"
+        title="Aumentar sinais de cura"
+      >+</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const healingOverlay = document.getElementById("healingOverlay");
+const healingCount = document.getElementById("healingCount");
+const decreaseHealing = document.getElementById("decreaseHealing");
+const increaseHealing = document.getElementById("increaseHealing");
+
+const minimumSigns = 4;
+const maximumSigns = 60;
+const stepSigns = 4;
+
+const healingColors = [
+  "#b9f6a5",
+  "#d4ffb8",
+  "#e8e49b",
+  "#a8edc0",
+  "#fff0b3",
+  "#c9e2bc"
+];
+
+let signCount = 30;
+
+function renderHealingSigns() {
+  healingOverlay
+    .querySelectorAll(".healing-particle")
+    .forEach(particle => particle.remove());
+
+  for (let i = 0; i < signCount; i++) {
+    const particle = document.createElement("span");
+
+    particle.className = "healing-particle";
+
+    // Alguns sinais aparecem como +++ para lembrar jogos de RPG.
+    particle.textContent = i % 4 === 0 ? "+++" : "+";
+
+    particle.setAttribute("aria-hidden", "true");
+
+    particle.style.setProperty(
+      "--particle-x",
+      `${(i * 37 + 11) % 100}%`
+    );
+
+    particle.style.setProperty(
+      "--particle-size",
+      `${14 + ((i * 7) % 20)}px`
+    );
+
+    particle.style.setProperty(
+      "--particle-delay",
+      `${-(i * 0.83)}s`
+    );
+
+    particle.style.setProperty(
+      "--particle-duration",
+      `${9 + ((i * 3) % 8)}s`
+    );
+
+    particle.style.setProperty(
+      "--particle-drift",
+      `${((i * 19) % 110) - 55}px`
+    );
+
+    particle.style.setProperty(
+      "--particle-color",
+      healingColors[i % healingColors.length]
+    );
+
+    healingOverlay.appendChild(particle);
+  }
+
+  healingCount.textContent = `${signCount} sinais de cura +`;
+
+  decreaseHealing.disabled = signCount <= minimumSigns;
+  increaseHealing.disabled = signCount >= maximumSigns;
+}
+
+decreaseHealing.addEventListener("click", () => {
+  signCount = Math.max(minimumSigns, signCount - stepSigns);
+  renderHealingSigns();
+});
+
+increaseHealing.addEventListener("click", () => {
+  signCount = Math.min(maximumSigns, signCount + stepSigns);
+  renderHealingSigns();
+});
+
+renderHealingSigns();
+</script>
+
+</body>
+</html>
